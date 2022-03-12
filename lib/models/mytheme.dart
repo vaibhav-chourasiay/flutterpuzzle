@@ -15,7 +15,7 @@ class MyTheme {
     brightness: Brightness.dark,
     fontFamily: GoogleFonts.lato().fontFamily,
     scaffoldBackgroundColor: Color.fromARGB(255, 16, 17, 46),
-    backgroundColor: Colors.white,
+    backgroundColor: Colors.black,
     iconTheme: const IconThemeData(
       color: Colors.white,
     ),
