@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //*!responsive
+    //**responsive
     //*!theme
     return const MaterialApp();
   }
