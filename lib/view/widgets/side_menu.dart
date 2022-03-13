@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:game/models/mytheme.dart';
+import 'package:game/view/widgets/numberofmoves.dart';
+import 'package:game/view_models/providers/puzzle_game_provider.dart';
+import 'package:game/view_models/providers/theme_provider.dart';
+import 'package:game/view_models/providers/time_provider.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 import '../responsive/size_fuctions.dart';
 
@@ -9,40 +15,58 @@ class SideMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: getWidth(context) * 0.30,
-      height: double.maxFinite,
-      // color: Colors.white,
-      margin: EdgeInsets.only(left: getWidth(context) * 0.05),
+      width: getWidth(context) * 0.25,
+      // height: double.maxFinite,
+      height: getHeight(context) * 0.70,
+
+      margin: EdgeInsets.only(left: getWidth(context) * 0.04),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Card(
-          //   elevation: 10.0,
-          //   color: Color.fromARGB(255, 116, 118, 255),
-          //   child: Padding(
-          //     padding: const EdgeInsets.all(8.0),
-          //     child: SizedBox(
-          //       width: getWidth(context) * 0.20,
-          //       child: Row(
-          //         mainAxisAlignment: MainAxisAlignment.center,
-          //         children: [
-          //           Text(
-          //             "Moves : 00",
-          //             style: TextStyle(
-          //                 fontSize: getWidth(context) * 0.0267,
-          //                 fontWeight: FontWeight.bold,
-          //                 fontFamily:
-          //                     GoogleFonts.lato().fontFamily,
-          //                 color: Colors.white),
-          //           ),
-          //         ],
-          //       ),
-          //     ),
-          //   ),
-          // ),
+          SizedBox(
+            height: getHeight(context) * 0.12,
+          ),
+          Text(
+            "Classic Sliding",
+            style: TextStyle(
+                fontSize: getWidth(context) * 0.034,
+                fontWeight: FontWeight.bold,
+                fontFamily: GoogleFonts.lato().fontFamily,
+                color: context.watch<ThemeProvider>().theme
+                    ? MyColor.light
+                    : MyColor.light,
+                shadows: const [
+                  Shadow(
+                      color: Colors.black,
+                      blurRadius: 1.0,
+                      offset: Offset(2, -2))
+                ]),
+          ),
+          Text(
+            "#Puzzle Chanllenge",
+            style: TextStyle(
+                fontSize: getWidth(context) * 0.034,
+                fontWeight: FontWeight.bold,
+                fontFamily: GoogleFonts.abrilFatface().fontFamily,
+                color: context.watch<ThemeProvider>().theme
+                    ? MyColor.light
+                    : MyColor.lightbotton,
+                shadows: const [
+                  Shadow(
+                      color: Colors.black,
+                      blurRadius: 1.0,
+                      offset: Offset(2, -2))
+                ]),
+          ),
           SizedBox(
             height: getHeight(context) * 0.04,
+          ),
+          (getWidth(context) < 1200)
+              ? const NumberOfMove()
+              : const SizedBox.shrink(),
+          SizedBox(
+            height: getHeight(context) * 0.05,
           ),
           ElevatedButton.icon(
             style: ElevatedButton.styleFrom(
@@ -50,21 +74,32 @@ class SideMenu extends StatelessWidget {
                 horizontal: getWidth(context) * 0.03,
                 vertical: getHeight(context) * 0.027,
               ),
-              primary: Color.fromARGB(255, 255, 74, 61),
+              primary: context.watch<ThemeProvider>().theme
+                  ? MyColor.darkcurve
+                  : MyColor.lightcurve,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(30.0),
               ),
             ),
-            onPressed: () {},
-            icon: Icon(Icons.start_rounded),
+            onPressed: () {
+              context.read<PuzzleProvider>().sufflevalue();
+              context.read<TimeProvider>().reset();
+            },
+            icon: const Icon(Icons.start_rounded),
             label: Text(
-              "Start",
+              "Suffle",
               style: TextStyle(
-                fontSize: getWidth(context) * 0.0266,
-                fontWeight: FontWeight.bold,
-                fontFamily: GoogleFonts.lato().fontFamily,
-                color: Color.fromARGB(255, 255, 255, 255),
-              ),
+                  fontSize: getWidth(context) * 0.0266,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: GoogleFonts.abrilFatface().fontFamily,
+                  color: MyColor.light,
+                  shadows: const [
+                    Shadow(
+                      color: Colors.black,
+                      blurRadius: 2.0,
+                      offset: Offset(2, -2),
+                    ),
+                  ]),
             ),
           ),
         ],

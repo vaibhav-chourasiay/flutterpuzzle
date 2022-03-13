@@ -15,7 +15,7 @@ class _WebAppBarState extends State<WebAppBar> {
   @override
   Widget build(BuildContext context) {
     return TweenAnimationBuilder(
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 1),
       tween: Tween<double>(begin: 0.0, end: 1.0),
       builder: (context, double value, child) {
         return Opacity(
@@ -38,8 +38,8 @@ class _WebAppBarState extends State<WebAppBar> {
           DefaultTextStyle(
             style: TextStyle(
               fontSize: getWidth(context) * 0.0256,
-              color: Color.fromARGB(255, 255, 255, 255),
-              fontFamily: GoogleFonts.lato().fontFamily,
+              color: const Color.fromARGB(255, 255, 255, 255),
+              fontFamily: GoogleFonts.abrilFatface().fontFamily,
               fontWeight: FontWeight.bold,
             ),
             child: AnimatedTextKit(

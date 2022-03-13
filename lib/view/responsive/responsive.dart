@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class Responsive extends StatelessWidget {
   Widget isWeb;
   Widget isMobile;
@@ -15,9 +16,9 @@ class Responsive extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        if (constraints.maxWidth > 800) {
+        if (constraints.maxWidth > 1200) {
           return isWeb;
-        } else if (constraints.maxWidth > 550) {
+        } else if (constraints.maxWidth > 750) {
           return isDesktop;
         } else {
           return isMobile;

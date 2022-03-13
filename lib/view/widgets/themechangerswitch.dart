@@ -18,7 +18,7 @@ class _ThemeChangerSwitchState extends State<ThemeChangerSwitch>
   void initState() {
     super.initState();
     _animationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 1));
+        AnimationController(vsync: this, duration: const Duration(seconds: 1));
     animation =
         Tween<double>(begin: 5.0, end: 40.0).animate(_animationController);
   }
@@ -26,6 +26,7 @@ class _ThemeChangerSwitchState extends State<ThemeChangerSwitch>
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      borderRadius: BorderRadius.circular(30.0),
       onTap: () {
         if (_animationController.isCompleted) {
           _animationController.reverse();
@@ -58,7 +59,7 @@ class _ThemeChangerSwitchState extends State<ThemeChangerSwitch>
                 decoration: BoxDecoration(
                   color: context.watch<ThemeProvider>().theme
                       ? Colors.yellow
-                      : Color.fromARGB(255, 160, 162, 255),
+                      : const Color.fromARGB(255, 160, 162, 255),
                   borderRadius: BorderRadius.circular(30.0),
                 ),
               ),
